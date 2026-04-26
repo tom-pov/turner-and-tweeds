@@ -2,7 +2,7 @@ import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import { FaChevronDown, FaRegCalendarAlt } from 'react-icons/fa'
 import 'react-datepicker/dist/react-datepicker.css'
-import './Contact.css'
+import './contact.css'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
