@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaChevronDown } from 'react-icons/fa'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -59,17 +60,21 @@ export default function Contact() {
             <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
               Event Type
             </label>
-            <select
-              name="event_type"
-              className="bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
-            >
-              <option value="">Select an event type</option>
-              <option>Wedding</option>
-              <option>Private Party</option>
-              <option>Corporate Event</option>
-              <option>Festival / Public Event</option>
-              <option>Other</option>
-            </select>
+            <div className="relative">
+              <select
+                name="event_type"
+                className="w-full appearance-none bg-cream border border-border pl-3.5 pr-10 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors cursor-pointer"
+              >
+                <option value="">Select an event type</option>
+                <option>Wedding</option>
+                <option>Private Party</option>
+                <option>Corporate Event</option>
+                <option>Festival / Public Event</option>
+                <option>Other</option>
+              </select>
+              <FaChevronDown className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-muted" size={11} />
+            </div>
+
           </div>
 
           <Field label="Event Date" name="event_date" type="date" />
