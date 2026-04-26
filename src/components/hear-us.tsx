@@ -37,8 +37,10 @@ export default function HearUs() {
                   frameBorder="no"
                   allow="autoplay"
                   src={`${soundcloudBase}/${slug}`}
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
                 />
+                <a href={`https://soundcloud.com/${slug}`} target="_blank" rel="noopener noreferrer">
+                  Open in SoundCloud
+                </a>
               </div>
             ))}
           </div>
