@@ -37,6 +37,7 @@ export default function HearUs() {
                   frameBorder="no"
                   allow="autoplay"
                   src={`${soundcloudBase}/${slug}`}
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
                 />
               </div>
             ))}
