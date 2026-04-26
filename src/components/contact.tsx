@@ -4,7 +4,7 @@ import { FaChevronDown } from 'react-icons/fa'
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
 // Replace with your Formspree form ID: https://formspree.io
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqknnlw'
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
 
 export default function Contact() {
   const [status, setStatus] = useState<FormState>('idle')
@@ -53,7 +53,7 @@ export default function Contact() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field label="Your Name"      name="name"       type="text"  placeholder="Full name" required />
+          <Field label="Your Name"      name="name"       type="text"  placeholder="Dawn Turner" required />
           <Field label="Email Address"  name="email"      type="email" placeholder="hello@example.com" required />
 
           <div className="flex flex-col gap-1.5">
@@ -74,10 +74,9 @@ export default function Contact() {
               </select>
               <FaChevronDown className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-muted" size={11} />
             </div>
-
           </div>
 
-          <Field label="Event Date" name="event_date" type="date" />
+          <Field label="Event Date" name="event_date" type="date" lang="en-GB" />
 
           <div className="col-span-1 md:col-span-2 flex flex-col gap-1.5">
             <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
@@ -112,26 +111,41 @@ export default function Contact() {
 }
 
 function Field({
-  label, name, type, placeholder, required,
+  label, name, type, placeholder, required, lang,
 }: {
   label: string
   name: string
   type: string
   placeholder?: string
   required?: boolean
+  lang?: string
 }) {
+  const isDate = type === 'date'
+
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
         {label}
       </label>
-      <input
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        className="bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
-      />
+      {isDate ? (
+        <input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          lang={lang}
+          className="w-full bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
+        />
+      ) : (
+        <input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          lang={lang}
+          className="bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
+        />
+      )}
     </div>
   )
 }
