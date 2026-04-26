@@ -94,7 +94,7 @@ export default function Contact() {
             <div className="relative">
               <DatePicker
                 selected={eventDate}
-                onChange={(date) => setEventDate(date)}
+                onChange={(date: Date | null) => setEventDate(date)}
                 dateFormat="dd/MM/yyyy"
                 placeholderText="DD/MM/YYYY"
                 minDate={new Date()}
