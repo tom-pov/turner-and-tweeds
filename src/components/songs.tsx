@@ -1,30 +1,31 @@
 import { useState, useEffect } from 'react'
 
 const featured = [
-  { genre: 'Indie / Pop',     title: 'Someone Like You',      artist: 'Adele' },
-  { genre: 'Folk / Acoustic', title: 'Fast Car',              artist: 'Tracy Chapman' },
-  { genre: 'Classic Rock',    title: 'Wonderwall',            artist: 'Oasis' },
-  { genre: 'Pop',             title: 'Thinking Out Loud',     artist: 'Ed Sheeran' },
-  { genre: 'Indie',           title: 'Mr Brightside',         artist: 'The Killers' },
-  { genre: 'Soul / Pop',      title: 'Make You Feel My Love', artist: 'Bob Dylan / Adele' },
-  { genre: 'Pop',             title: 'Shallow',               artist: 'Lady Gaga & Bradley Cooper' },
-  { genre: 'Acoustic',        title: 'The Scientist',         artist: 'Coldplay' },
-  { genre: 'Indie',           title: 'Chasing Cars',          artist: 'Snow Patrol' },
+  { genre: 'Folk / Acoustic', title: 'Big Yellow Taxi',          artist: 'Joni Mitchell' },
+  { genre: 'Pop / Disco',     title: 'Does Your Mother Know',    artist: 'Abba' },
+  { genre: 'Indie / Rock',    title: 'Sit Down',                 artist: 'James' },
+  { genre: 'Classic Rock',    title: 'Rocking All Over The World', artist: 'Status Quo' },
+  { genre: 'Pop',             title: 'Pink Pony Club',           artist: 'Chappell Roan' },
+  { genre: 'Pop / Indie',     title: 'As It Was',                artist: 'Harry Styles' },
+  { genre: 'Pop / Folk',      title: 'Call Me Al',               artist: 'Paul Simon' },
+  { genre: 'Indie / Pop',     title: 'Kiss Me',                  artist: 'Sixpence None The Richer' },
+  { genre: 'Pop / Rock',      title: 'Medley',                   artist: 'The Script' },
 ]
 
+// Full setlist — does not include the featured 9 above to avoid duplicates.
+// Old featured songs (Someone Like You, Fast Car etc.) have been moved here.
 const fullSetlist = [
   'A Little Respect – Erasure',
   'All About That Bass – Meghan Trainor',
   'American Boy – Estelle / Kanye West',
-  'As It Was – Harry Styles',
-  'Big Yellow Taxi – Joni Mitchell',
   'Blinding Lights – The Weeknd',
   'Budapest – George Ezra',
-  'Call Me Al – Paul Simon',
+  'Chasing Cars – Snow Patrol',
   'Come Together – The Beatles',
   'Delilah – Tom Jones',
   "Don't Look Back In Anger – Oasis",
   'Everywhere – Fleetwood Mac',
+  'Fast Car – Tracy Chapman',
   'Feel It Still – Portugal. The Man',
   'Forget You – Cee Lo Green',
   'Happy – Pharrell Williams',
@@ -33,44 +34,46 @@ const fullSetlist = [
   'Ho Hey – The Lumineers',
   'Hold My Hand – Jess Glynne',
   'How Long Will I Love You – Ellie Goulding',
-  'I Wanna Dance With Somebody – Whitney Houston',
   "I Can't Help Falling In Love With You – Elvis Presley",
+  'I Wanna Dance With Somebody – Whitney Houston',
   "Isn't She Lovely – Stevie Wonder",
   'Jolene – Dolly Parton',
   'Jungle Book Medley – Disney',
-  'Kiss Me – Sixpence None The Richer',
+  'Make You Feel My Love – Bob Dylan / Adele',
   'Mercy – Duffy',
   'Mr Brightside – The Killers',
   'My Girl – The Temptations',
-  'No Diggity – Blackstreet',
   'New Rules – Dua Lipa',
+  'No Diggity – Blackstreet',
   'Perfect 10 – The Beautiful South',
   'Rehab – Amy Winehouse',
   'Rock With You – Michael Jackson',
-  'Rockin\' All Over The World – Status Quo',
   'Saw Her Standing There – The Beatles',
   'Seven Nation Army – The White Stripes',
+  'Shallow – Lady Gaga & Bradley Cooper',
   'She Said – Plan B',
   'Shotgun – George Ezra',
-  'Signed, Sealed, Delivered (I\'m Yours) – Stevie Wonder',
+  "Signed, Sealed, Delivered (I'm Yours) – Stevie Wonder",
+  'Someone Like You – Adele',
   'Stand By Me – Ben E King',
-  'Summer Of 69 – Bryan Adams',
   'Stuck In The Middle With You – Stealers Wheel',
+  'Summer Of 69 – Bryan Adams',
   "Sweet Child O' Mine – Guns N' Roses",
   'Take On Me – Aha',
+  'The Scientist – Coldplay',
   'Thinking Out Loud – Ed Sheeran',
   'This Charming Man – The Smiths',
   'Ticket To Ride – The Beatles',
   'Use Somebody – Kings Of Leon',
   'Valerie – Amy Winehouse',
-  "You've Got A Friend In Me – Randy Newman",
+  'Wonderwall – Oasis',
   'You Make My Dreams Come True – Hall & Oates',
+  "You've Got A Friend In Me – Randy Newman",
 ]
 
 export default function Songs() {
   const [modalOpen, setModalOpen] = useState(false)
 
-  // Close on Escape key
   useEffect(() => {
     if (!modalOpen) return
     const handleKey = (e: KeyboardEvent) => {
@@ -80,7 +83,6 @@ export default function Songs() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [modalOpen])
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = modalOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -100,7 +102,6 @@ export default function Songs() {
             of what you can expect from a Turner & Tweeds set.
           </p>
 
-          {/* Featured songs grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[1px] bg-border border border-border mb-6">
             {featured.map(({ genre, title, artist }) => (
               <div key={title} className="bg-cream p-5">
@@ -115,17 +116,13 @@ export default function Songs() {
             <p className="text-[0.8rem] text-muted tracking-wide">
               New songs added regularly · Requests welcome
             </p>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="btn btn--dark"
-            >
+            <button onClick={() => setModalOpen(true)} className="btn btn--dark">
               View Full Setlist
             </button>
           </div>
         </section>
       </div>
 
-      {/* Modal */}
       {modalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/80 backdrop-blur-sm"
@@ -135,15 +132,12 @@ export default function Songs() {
             className="relative bg-cream w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal header */}
             <div className="flex items-center justify-between px-6 md:px-8 py-5 border-b border-border shrink-0">
               <div>
                 <p className="text-[0.65rem] tracking-[0.18em] uppercase text-gold font-medium mb-0.5">
                   Full Setlist
                 </p>
-                <h3 className="font-display text-[1.5rem] font-light">
-                  Our Repertoire
-                </h3>
+                <h3 className="font-display text-[1.5rem] font-light">Our Repertoire</h3>
               </div>
               <button
                 onClick={() => setModalOpen(false)}
@@ -154,7 +148,6 @@ export default function Songs() {
               </button>
             </div>
 
-            {/* Scrollable song list */}
             <div className="overflow-y-auto px-6 md:px-8 py-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
                 {fullSetlist.map((song) => {
