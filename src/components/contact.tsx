@@ -53,7 +53,7 @@ export default function Contact() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field label="Your Name"      name="name"       type="text"  placeholder="Dawn Turner" required />
+          <Field label="Your Name"      name="name"       type="text"  placeholder="Full name" required />
           <Field label="Email Address"  name="email"      type="email" placeholder="hello@example.com" required />
 
           <div className="flex flex-col gap-1.5">
