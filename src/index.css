@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Reusable button styles */
 @layer components {
   .btn {
     @apply inline-block px-6 py-2.5 text-[0.75rem] tracking-[0.12em] uppercase font-medium font-body cursor-pointer bg-transparent border-[1.5px] transition-all duration-200;
@@ -40,6 +42,7 @@ body {
   }
 }
 
+/* Hero gradient overlay — easier as a utility class than Tailwind arbitrary */
 .hero-overlay::after {
   content: '';
   position: absolute;
