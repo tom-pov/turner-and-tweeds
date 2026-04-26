@@ -38,9 +38,6 @@ export default function HearUs() {
                   allow="autoplay"
                   src={`${soundcloudBase}/${slug}`}
                 />
-                <a href={`https://soundcloud.com/${slug}`} target="_blank" rel="noopener noreferrer">
-                  Open in SoundCloud
-                </a>
               </div>
             ))}
           </div>
