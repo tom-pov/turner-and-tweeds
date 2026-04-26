@@ -1,13 +1,16 @@
 import { useState } from 'react'
-import { FaChevronDown } from 'react-icons/fa'
+import DatePicker from 'react-datepicker'
+import { FaChevronDown, FaRegCalendarAlt } from 'react-icons/fa'
+import 'react-datepicker/dist/react-datepicker.css'
+import './Contact.css'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-// Replace with your Formspree form ID: https://formspree.io
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
 
 export default function Contact() {
   const [status, setStatus] = useState<FormState>('idle')
+  const [eventDate, setEventDate] = useState<Date | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -15,6 +18,11 @@ export default function Contact() {
 
     const form = e.currentTarget
     const data = new FormData(form)
+
+    // Append date manually since DatePicker is a controlled component
+    if (eventDate) {
+      data.append('event_date', eventDate.toLocaleDateString('en-GB'))
+    }
 
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -25,6 +33,7 @@ export default function Contact() {
 
       if (res.ok) {
         setStatus('success')
+        setEventDate(null)
         form.reset()
       } else {
         setStatus('error')
@@ -53,9 +62,10 @@ export default function Contact() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field label="Your Name"      name="name"       type="text"  placeholder="Full name" required />
-          <Field label="Email Address"  name="email"      type="email" placeholder="hello@example.com" required />
+          <Field label="Your Name"     name="name"  type="text"  placeholder="Full name" required />
+          <Field label="Email Address" name="email" type="email" placeholder="hello@example.com" required />
 
+          {/* Event Type */}
           <div className="flex flex-col gap-1.5">
             <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
               Event Type
@@ -72,12 +82,31 @@ export default function Contact() {
                 <option>Festival / Public Event</option>
                 <option>Other</option>
               </select>
-              <FaChevronDown className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-muted" size={11} />
+              <FaChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted" size={11} />
             </div>
           </div>
 
-          <Field label="Event Date" name="event_date" type="date" lang="en-GB" />
+          {/* Event Date */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
+              Event Date
+            </label>
+            <div className="relative">
+              <DatePicker
+                selected={eventDate}
+                onChange={(date) => setEventDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="DD/MM/YYYY"
+                minDate={new Date()}
+                className="tt-datepicker"
+                calendarClassName="tt-calendar"
+                wrapperClassName="w-full"
+              />
+              <FaRegCalendarAlt className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted" size={14} />
+            </div>
+          </div>
 
+          {/* Message */}
           <div className="col-span-1 md:col-span-2 flex flex-col gap-1.5">
             <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
               Message
@@ -111,41 +140,26 @@ export default function Contact() {
 }
 
 function Field({
-  label, name, type, placeholder, required, lang,
+  label, name, type, placeholder, required,
 }: {
   label: string
   name: string
   type: string
   placeholder?: string
   required?: boolean
-  lang?: string
 }) {
-  const isDate = type === 'date'
-
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-[0.7rem] tracking-[0.12em] uppercase text-muted font-medium">
         {label}
       </label>
-      {isDate ? (
-        <input
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          required={required}
-          lang={lang}
-          className="w-full bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
-        />
-      ) : (
-        <input
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          required={required}
-          lang={lang}
-          className="bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
-        />
-      )}
+      <input
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        className="bg-cream border border-border px-3.5 py-2.5 text-[0.9rem] text-dark outline-none focus:border-gold transition-colors"
+      />
     </div>
   )
 }

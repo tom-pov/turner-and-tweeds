@@ -1,0 +1,99 @@
+/* ── Input field ─────────────────────────────────── */
+.tt-datepicker {
+    width: 100%;
+    background: #FAF7F0;
+    border: 1px solid #DDD0B8;
+    padding: 0.625rem 2.5rem 0.625rem 0.875rem;
+    font-size: 0.9rem;
+    font-family: 'Jost', system-ui, sans-serif;
+    color: #1A1208;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .tt-datepicker:focus {
+    border-color: #C4963A;
+  }
+  
+  .react-datepicker-wrapper,
+  .react-datepicker__input-container {
+    width: 100% !important;
+  }
+  
+  /* ── Calendar popup ──────────────────────────────── */
+  .tt-calendar {
+    font-family: 'Jost', system-ui, sans-serif !important;
+    border: 1px solid #DDD0B8 !important;
+    border-radius: 0 !important;
+    background: #FAF7F0 !important;
+    box-shadow: 0 8px 24px rgba(26, 18, 8, 0.12) !important;
+  }
+  
+  /* Header */
+  .tt-calendar .react-datepicker__header {
+    background: #1A1208 !important;
+    border-bottom: 1px solid #DDD0B8 !important;
+    border-radius: 0 !important;
+    padding: 0.75rem 0 !important;
+  }
+  
+  .tt-calendar .react-datepicker__current-month {
+    color: #FAF7F0 !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  
+  .tt-calendar .react-datepicker__day-name {
+    color: #C4963A !important;
+    font-size: 0.72rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.05em !important;
+  }
+  
+  /* Navigation arrows */
+  .tt-calendar .react-datepicker__navigation-icon::before {
+    border-color: #FAF7F0 !important;
+  }
+  
+  .tt-calendar .react-datepicker__navigation:hover .react-datepicker__navigation-icon::before {
+    border-color: #C4963A !important;
+  }
+  
+  /* Days */
+  .tt-calendar .react-datepicker__day {
+    color: #1A1208 !important;
+    border-radius: 0 !important;
+    font-size: 0.85rem !important;
+    transition: background 0.15s, color 0.15s !important;
+  }
+  
+  .tt-calendar .react-datepicker__day:hover {
+    background: #F0E6D4 !important;
+    color: #1A1208 !important;
+  }
+  
+  .tt-calendar .react-datepicker__day--selected {
+    background: #C4963A !important;
+    color: #FAF7F0 !important;
+  }
+  
+  .tt-calendar .react-datepicker__day--selected:hover {
+    background: #7A5C3A !important;
+  }
+  
+  .tt-calendar .react-datepicker__day--today {
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+  }
+  
+  .tt-calendar .react-datepicker__day--disabled {
+    color: #DDD0B8 !important;
+  }
+  
+  /* Triangle/arrow */
+  .react-datepicker__triangle {
+    display: none !important;
+  }
