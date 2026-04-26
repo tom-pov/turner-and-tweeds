@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+@theme {
+  /* Colours */
+  --color-cream:      #FAF7F0;
+  --color-cream-mid:  #F0E6D4;
+  --color-border:     #DDD0B8;
+  --color-brown:      #7A5C3A;
+  --color-gold:       #C4963A;
+  --color-dark:       #1A1208;
+  --color-body:       #4A3C2C;
+  --color-muted:      #7A6A5A;
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .btn {
+    @apply inline-block px-6 py-2.5 text-[0.75rem] tracking-[0.12em] uppercase font-medium font-body cursor-pointer bg-transparent border-[1.5px] transition-all duration-200;
+  }
+  .btn--light {
+    @apply text-cream border-gold hover:bg-gold hover:text-dark;
+  }
+  .btn--dark {
+    @apply text-dark border-brown hover:bg-brown hover:text-cream;
+  }
+}
+
+.hero-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 10, 5, 0.78) 0%, rgba(15, 10, 5, 0.1) 60%, transparent 100%);
+}
