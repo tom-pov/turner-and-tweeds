@@ -3,7 +3,7 @@ import heroImage from '../assets/hero.jpg'
 export default function Hero() {
     return (
       <section
-        className="hero-overlay relative flex items-end h-[480px] md:h-[520px] bg-cover bg-[center_30%] px-6 pb-10 md:px-12 md:pb-12"
+        className="hero-overlay relative flex items-end h-[420px] md:h-[520px] bg-cover bg-[55%_center] md:bg-[center_30%] px-6 pb-10 md:px-12 md:pb-12"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="relative z-10 text-cream">
